@@ -1,38 +1,22 @@
 package core
 
-import "strconv"
+import (
+	"time"
+)
 
 type TimeRange struct {
 	StartSec, EndSec int
 }
 
 func (r TimeRange) Start() string {
-	return r.Translate(r.StartSec)
+	return r.IntToString(r.StartSec)
 }
 
 func (r TimeRange) End() string {
-	return r.Translate(r.EndSec)
+	return r.IntToString(r.EndSec)
 }
 
-// implementation later
-func (r TimeRange) Translate(s int) string {
-	var strHour, strMinute string
-	hour := s / 3600
-	minutes := (s % 3600) / 60
-
-	if hour == 24 {
-		strHour = "00"
-	} else {
-		strHour = convert(hour)
-	}
-	strMinute = convert(minutes)
-
-	return strHour + ":" + strMinute
-}
-
-func convert(t int) string {
-	if t < 10 {
-		return "0" + strconv.Itoa(t)
-	}
-	return strconv.Itoa(t)
+func (r TimeRange) IntToString(s int) string {
+	t := time.Unix(int64(s), 0).UTC()
+	return t.Format("15:04")
 }

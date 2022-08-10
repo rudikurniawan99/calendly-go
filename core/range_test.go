@@ -19,20 +19,20 @@ func TestTimeRange_Test(t *testing.T) {
 		wantEnd   string
 	}{
 		{
-			name: "1 oclock",
+			name: "00 until 2",
 			fields: fields{
-				StartSec: 3600,
+				StartSec: 0,
 				EndSec:   7200,
 			},
-			wantStart: "01:00",
+			wantStart: "00:00",
 			wantEnd:   "02:00",
 		}, {
-			name: "2 oclock",
+			name: "1 until 4 oclock",
 			fields: fields{
-				StartSec: 3600,
+				StartSec: 3662,
 				EndSec:   14400,
 			},
-			wantStart: "01:00",
+			wantStart: "01:01",
 			wantEnd:   "04:00",
 		},
 	}
