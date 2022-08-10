@@ -26,6 +26,14 @@ func TestTimeRange_Test(t *testing.T) {
 			},
 			wantStart: "01:00",
 			wantEnd:   "02:00",
+		}, {
+			name: "2 oclock",
+			fields: fields{
+				StartSec: 3600,
+				EndSec:   14400,
+			},
+			wantStart: "01:00",
+			wantEnd:   "04:00",
 		},
 	}
 
@@ -37,7 +45,7 @@ func TestTimeRange_Test(t *testing.T) {
 			}
 
 			assert.Equal(t, tt.wantStart, r.Start())
-			// assert.Equal(t, tt.wantEnd, r.End())
+			assert.Equal(t, tt.wantEnd, r.End())
 		})
 	}
 }
