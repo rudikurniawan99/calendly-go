@@ -6,20 +6,40 @@ import (
 	"github.com/google/uuid"
 )
 
+type MapArrTimeRange map[time.Weekday][]TimeRange
+
 //schedule store information about availability for each day
 type Event struct {
 	ID        uuid.UUID
 	Name      string
-	Schedules map[time.Weekday][]TimeRange
+	Schedules MapArrTimeRange
 }
 
 type SlotParams struct {
-	Month time.Month
-	Day   *time.Time
+	M time.Month
+	Y int
 }
 
 func (e Event) GetAvailableSlots(params SlotParams) ([]AvailableDay, error) {
-	return nil, nil
+	star := time.Date(params.Y, params.M, 1, 0, 0, 0, 0, time.UTC)
+	end := time.Date(params.Y, params.M+1, 0, 0, 0, 0, 0, time.UTC)
+
+	var res []AvailableDay
+
+	starDay := star.Day()
+	endDay := end.Day()
+
+	for i := starDay; i <= endDay; i++ {
+		cur := time.Date(params.Y, params.M, i, 0, 0, 0, 0, time.UTC)
+		if _, ok := e.Schedules[cur.Weekday()]; ok {
+			res = append(res, AvailableDay{
+				Date: cur,
+				Slot: nil,
+			})
+		}
+	}
+
+	return res, nil
 }
 
 type Slot struct {
@@ -27,5 +47,6 @@ type Slot struct {
 }
 
 type AvailableDay struct {
+	Date time.Time
 	Slot []Slot
 }
