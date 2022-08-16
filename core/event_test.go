@@ -24,63 +24,6 @@ func TestEvent_Test(t *testing.T) {
 		args
 		want []AvailableDay
 	}{
-		// {
-		// 	name: "set 1 time range in September monday, should get all slot on September",
-		// 	fields: fields{
-		// 		Schedule: MapArrTimeRange{
-		// 			time.Monday: []TimeRange{
-		// 				{
-		// 					StartSec: 0,
-		// 					EndSec:   3600,
-		// 				},
-		// 			},
-		// 		},
-		// 	},
-		// 	args: args{
-		// 		params: SlotParams{
-		// 			M: time.September,
-		// 			Y: 2022,
-		// 		},
-		// 	},
-		// 	want: []AvailableDay{
-		// 		{
-		// 			Date: time.Date(2022, time.September, 5, 0, 0, 0, 0, time.UTC),
-		// 			Slot: []TimeRange{
-		// 				{
-		// 					StartSec: 0,
-		// 					EndSec:   3600,
-		// 				},
-		// 			},
-		// 		},
-		// 		{
-		// 			Date: time.Date(2022, time.September, 12, 0, 0, 0, 0, time.UTC),
-		// 			Slot: []TimeRange{
-		// 				{
-		// 					StartSec: 0,
-		// 					EndSec:   3600,
-		// 				},
-		// 			},
-		// 		},
-		// 		{
-		// 			Date: time.Date(2022, time.September, 19, 0, 0, 0, 0, time.UTC),
-		// 			Slot: []TimeRange{
-		// 				{
-		// 					StartSec: 0,
-		// 					EndSec:   3600,
-		// 				},
-		// 			},
-		// 		},
-		// 		{
-		// 			Date: time.Date(2022, time.September, 26, 0, 0, 0, 0, time.UTC),
-		// 			Slot: []TimeRange{
-		// 				{
-		// 					StartSec: 0,
-		// 					EndSec:   3600,
-		// 				},
-		// 			},
-		// 		},
-		// 	},
-		// },
 		{
 			name: "set 2 time range in August sunday, should get all slot on August",
 			fields: fields{
