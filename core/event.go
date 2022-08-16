@@ -16,8 +16,8 @@ type Event struct {
 }
 
 type SlotParams struct {
-	M time.Month
-	Y int
+	M    time.Month
+	D, Y int
 }
 
 func (e Event) GetAvailableSlots(params SlotParams) ([]AvailableDay, error) {
@@ -31,10 +31,15 @@ func (e Event) GetAvailableSlots(params SlotParams) ([]AvailableDay, error) {
 
 	for i := starDay; i <= endDay; i++ {
 		cur := time.Date(params.Y, params.M, i, 0, 0, 0, 0, time.UTC)
-		if _, ok := e.Schedules[cur.Weekday()]; ok {
+		if rs, ok := e.Schedules[cur.Weekday()]; ok {
+
+			if params.D != cur.Day() {
+				rs = nil
+			}
+
 			res = append(res, AvailableDay{
 				Date: cur,
-				Slot: nil,
+				Slot: rs,
 			})
 		}
 	}
@@ -42,11 +47,12 @@ func (e Event) GetAvailableSlots(params SlotParams) ([]AvailableDay, error) {
 	return res, nil
 }
 
-type Slot struct {
-	Star int
+func (e Event) GetTimeStart() string {
+	// e.Schedules[]
+	return ""
 }
 
 type AvailableDay struct {
 	Date time.Time
-	Slot []Slot
+	Slot []TimeRange
 }
