@@ -67,55 +67,6 @@ func TestEvent_Test(t *testing.T) {
 	}
 }
 
-// func TestGetAllSlots_Test(t *testing.T) {
-// 	type fields struct {
-// 		ID       uuid.UUID
-// 		Name     string
-// 		Schedule MapArrTimeRange
-// 		Duration int
-// 	}
-// 	type args struct {
-// 		startTime time.Time
-// 		endTime   time.Time
-// 	}
-
-// 	tests := []struct {
-// 		name string
-// 		fields
-// 		args
-// 		want []time.Time
-// 	}{
-// 		{
-// 			name: "test avaliable slot",
-// 			fields: fields{
-// 				Schedule: MapArrTimeRange{
-// 					time.Saturday: []TimeRange{
-// 						{
-// 							StartSec: 0,
-// 							EndSec: 3600,
-// 						},
-// 					},
-// 				},
-// 				Duration: 30,
-// 			},
-// 			args: args{
-// 				startTime: time.Date(2022, time.August, 20, 0, 0, 0, 0, time.UTC),
-// 				endTime:   time.Date(2022, time.August, 20, 1, 0, 0, 0, time.UTC),
-// 			},
-// 			want: []time.Time{
-// 				time.Date(2022, time.August, 20, 0, 0, 0, 0, time.UTC),
-// 				time.Date(2022, time.August, 20, 0, 30, 0, 0, time.UTC),
-// 			},
-// 		},
-// 	}
-// 	for _, tt := range tests {
-// 		t.Run(tt.name, func(t *testing.T) {
-// 			e := Event.
-// 		})
-// 	}
-
-// }
-
 func TestGetAvailableTimeStart_Test(t *testing.T) {
 	type fields struct {
 		ID       uuid.UUID
